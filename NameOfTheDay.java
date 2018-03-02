@@ -16,18 +16,45 @@ public class NameOfTheDay{
         //this.reader=reader;
     }
 
-    public void setYear(Scanner reader){
-        System.out.print("Year: ");
-        String input=reader.nextLine();
-
-    }
-
-    public void setMonth(int month) {
+        public void setMonth(int month) {
+        if(month>0&&month<13)
         this.month = month;
     }
 
     public void setYear(int year) {
+        if(year>-1&&year<10000)
         this.year = year;
+    }
+
+    public void setYear(Scanner reader) {
+        while (true) {
+            System.out.print("Year: ");
+            String input = reader.nextLine();
+            if (input.matches("\\d{1,4}")) {
+                this.year = Integer.parseInt(input);
+                return;
+            }
+            if (input.isEmpty())
+                return;
+            System.out.println("Wrong year. Try again");
+        }
+    }
+
+    public void setMonth(Scanner reader){
+        while (true) {
+            System.out.print("Month: ");
+            String input = reader.nextLine();
+            if (input.matches("\\d{1,2}")) {
+                int month=Integer.parseInt(input);
+                if(month>0&&month<13) {
+                    this.month = Integer.parseInt(input);
+                    return;
+                }
+            }
+            if (input.isEmpty())
+                return;
+            System.out.println("Wrong month. Try again");
+        }
     }
 
     public void setDays(Scanner reader) {
@@ -47,23 +74,36 @@ public class NameOfTheDay{
         }
     }
 
+    public void setCombo(Scanner reader){
+        setYear(reader);
+        setMonth(reader);
+        setDays(reader);
+    }
+
     public int getDay() {
         return this.day;
     }
-
-    private void dayScanner(Scanner reader, int range){
-        System.out.print("Day: ");
-        String input = reader.nextLine();
-        if((input.matches("\\d{1,2}"))){
-            int day=Integer.parseInt(input);
-            if(day>0&&day<=range){
-                this.day=day;
-                return;
-            }
-        }
-        System.out.println("Wrong day. Try again");
-        dayScanner(reader,range);
+    public int getYear() {
+        return year;
+    }
+    public int getMonth() {
+        return month;
     }
 
-
+    private void dayScanner(Scanner reader, int range) {
+        while (true) {
+            System.out.print("Day: ");
+            String input = reader.nextLine();
+            if ((input.matches("\\d{1,2}"))) {
+                int day = Integer.parseInt(input);
+                if (day > 0 && day <= range) {
+                    this.day = day;
+                    return;
+                }
+            }
+            if (input.isEmpty())
+                return;
+            System.out.println("Wrong day. Try again");
+        }
+    }
 }

@@ -144,4 +144,56 @@ public class NameOfTheDayTest {
         }
         catch(Exception e){}
     }
+    @Test
+    public void isDay1WhenStringIsEmpty(){
+        String data="\n-10\n02";
+        NameOfTheDay day=new NameOfTheDay();
+        day.setMonth(4);
+        day.setDays(new Scanner(data));
+        assertEquals(1,day.getDay());
+    }
+    @Test
+    public void isDay1WhenStringIsFirstBlank(){
+        String data="   \n-10\n02";
+        NameOfTheDay day=new NameOfTheDay();
+        day.setMonth(4);
+        day.setDays(new Scanner(data));
+        assertEquals(2,day.getDay());
+    }
+    @Test
+    public void isYearValid(){
+        String datas="-10\n02\n1994\n-197\n\n\n";
+        Scanner data=new Scanner(datas);
+        NameOfTheDay day=new NameOfTheDay();
+        day.setYear(data);
+        assertEquals(2,day.getYear());
+        day.setYear(data);
+        assertEquals(1994,day.getYear());
+        day.setYear(data);
+        assertEquals(1994,day.getYear());
+
+    }
+    @Test
+    public void isMonthValid(){
+        String datas="-10\n02\n1994\n13\n12\n7";
+        Scanner data=new Scanner(datas);
+        NameOfTheDay day=new NameOfTheDay();
+        day.setMonth(data);
+        assertEquals(2,day.getMonth());
+        day.setMonth(data);
+        assertEquals(12,day.getMonth());
+        day.setMonth(data);
+        assertEquals(7,day.getMonth());
+
+    }
+    @Test
+    public void is1996_02_29(){
+        String datas="-10\n1996\n  \n2\n30\n29";
+        Scanner data=new Scanner(datas);
+        NameOfTheDay day=new NameOfTheDay();
+        day.setCombo(data);
+        assertEquals(2,day.getMonth());
+        assertEquals(29,day.getDay());
+        assertEquals(1996,day.getYear());
+    }
 }
