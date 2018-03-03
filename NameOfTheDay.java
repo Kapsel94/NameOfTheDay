@@ -1,31 +1,26 @@
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.IntStream;
 
 
 public class NameOfTheDay{
     private int year,month,day;
-    private int fyear,fmonth,fday;
-    //private Scanner reader;
-
 
     public NameOfTheDay(){
-        fyear=1;  year=1;
-        fmonth=1;    month=1;
-        fday=1;      day=1;
-        //this.reader=reader;
+        year=1900;
+        month=1;
+        day=1;
     }
 
-        public void setMonth(int month) {
+    public void setMonth(int month)          //set month, only to test
+    {
         if(month>0&&month<13)
         this.month = month;
     }
-
-    public void setYear(int year) {
+    public void setYear(int year)            //set year, only to test
+    {
         if(year>-1&&year<10000)
         this.year = year;
     }
-
     public void setYear(Scanner reader) {
         while (true) {
             System.out.print("Year: ");
@@ -57,7 +52,7 @@ public class NameOfTheDay{
         }
     }
 
-    public void setDays(Scanner reader) {
+    public void setDay(Scanner reader) {
         final int[] thirtyDays = {4, 6, 9, 11};
         final int[] thirtyOneDays = {1, 3, 5, 7, 8, 10, 12};
         if (IntStream.of(thirtyOneDays).anyMatch(x -> x == this.month)) {
@@ -74,10 +69,11 @@ public class NameOfTheDay{
         }
     }
 
-    public void setCombo(Scanner reader){
+    public void setCombo(Scanner reader)  //setting year,month and day in one method
+    {
         setYear(reader);
         setMonth(reader);
-        setDays(reader);
+        setDay(reader);
     }
 
     public int getDay() {
@@ -90,7 +86,8 @@ public class NameOfTheDay{
         return month;
     }
 
-    private void dayScanner(Scanner reader, int range) {
+    private void dayScanner(Scanner reader, int range)   //input Scanner to set day
+    {
         while (true) {
             System.out.print("Day: ");
             String input = reader.nextLine();

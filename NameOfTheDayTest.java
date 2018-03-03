@@ -7,13 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class NameOfTheDayTest {
 
-
     @Test
     public void isDay31Valid(){
         String data="awdwda\n40\n-10\n02";
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(1);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(2,day.getDay());
     }
     @Test
@@ -24,7 +23,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(1);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertFalse(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -38,7 +37,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(1);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertTrue(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -49,7 +48,7 @@ public class NameOfTheDayTest {
         String data="31\n-10\n02";
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(4);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(2,day.getDay());
     }
     @Test
@@ -60,7 +59,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(4);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertFalse(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -74,7 +73,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(4);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertTrue(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -86,7 +85,7 @@ public class NameOfTheDayTest {
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
         day.setYear(1900);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertNotEquals(29,day.getDay());
     }
     @Test
@@ -95,7 +94,7 @@ public class NameOfTheDayTest {
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
         day.setYear(1901);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertNotEquals(29,day.getDay());
     }
     @Test
@@ -104,7 +103,7 @@ public class NameOfTheDayTest {
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
         day.setYear(2000);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(29,day.getDay());
     }
     @Test
@@ -113,7 +112,7 @@ public class NameOfTheDayTest {
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
         day.setYear(2004);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(29,day.getDay());
     }
     @Test
@@ -124,7 +123,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertFalse(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -138,7 +137,7 @@ public class NameOfTheDayTest {
         System.setOut(newOut);
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(2);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         try{
             assertTrue(new String(mockOut.toByteArray(), "UTF-8").contains("Wrong day. Try again"));
         }
@@ -149,7 +148,7 @@ public class NameOfTheDayTest {
         String data="\n-10\n02";
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(4);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(1,day.getDay());
     }
     @Test
@@ -157,7 +156,7 @@ public class NameOfTheDayTest {
         String data="   \n-10\n02";
         NameOfTheDay day=new NameOfTheDay();
         day.setMonth(4);
-        day.setDays(new Scanner(data));
+        day.setDay(new Scanner(data));
         assertEquals(2,day.getDay());
     }
     @Test
@@ -195,5 +194,15 @@ public class NameOfTheDayTest {
         assertEquals(2,day.getMonth());
         assertEquals(29,day.getDay());
         assertEquals(1996,day.getYear());
+    }
+    @Test
+    public void is2100_02_29False(){
+        String datas="-10\n2100\n  \n2\n30\n29\n28";
+        Scanner data=new Scanner(datas);
+        NameOfTheDay day=new NameOfTheDay();
+        day.setCombo(data);
+        assertEquals(2,day.getMonth());
+        assertEquals(28,day.getDay());
+        assertEquals(2100,day.getYear());
     }
 }
