@@ -161,7 +161,7 @@ public class NameOfTheDayTest {
     }
     @Test
     public void isYearValid(){
-        String datas="-10\n02\n1994\n-197\n\n\n";
+        String datas="-10\n02\n1994\n-197\n\n\n\n";
         Scanner data=new Scanner(datas);
         NameOfTheDay day=new NameOfTheDay();
         day.setYear(data);
